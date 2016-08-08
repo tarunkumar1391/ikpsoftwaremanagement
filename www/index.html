@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IKP-Management </title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../scripts/js/angular.min.js"></script>
+    <script src="../scripts/js/ui-bootstrap-tpls-2.0.0.min.js"></script>
+    <script src="../scripts/js/angular-animate.min.js"></script>
+
+
+    <script src="../scripts/js/control.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="../scripts/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="myApp" >
+    <div class="container-fluid"><!--main body container-->
+        <div class="row-fluid"><!--header-->
+            <div class="page-header">
+                    <h3>IKP - Publication Management System</h3>
+            </div>
+        </div>
+        <div class="row"><!--Nav + body content-->
+            <div class="col-md-2 col-lg-2 navbg">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a data-toggle="tab" href="#newEntry">New Entry</a></li>
+                    <li><a data-toggle="tab" href="#viewEntries">View</a></li>
+                    <li><a data-toggle="tab" href="#modifyEntries">Modify</a></li>
+
+                </ul>
+            </div>
+            <div class="col-mg-10 col-lg-10">
+                <div class="tab-content">
+                    <div id="newEntry" class="tab-pane fade in active">
+                        <div class="container">
+                            <form role="form" class="form-horizontal" action="../server/main.php" method="post" ng-controller="pubController">
+                                <div class="form-group">
+                                    <div class="col-sm-10 col-sm-offset-2">
+                                        <?php echo $result; ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Name:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >First name:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="fname" placeholder="Enter First name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Betreuer:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="betreuer" placeholder="Enter betreuer's name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >End date:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="date" class="form-control" name="enddate" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Type of work:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" name="typofwork" required>
+                                            <option>Choose an option...</option>
+                                            <option ng-repeat="x in tow" value="{{x.work}}">{{x.work}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Förderung:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select  class="form-control" name="foerderung" required>
+                                            <option>Choose an option...</option>
+                                            <option ng-repeat="y in foerd" value="{{y.foer}}">{{y.foer}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >TP:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select  class="form-control" name="tp" required>
+                                            <option>Choose an option...</option>
+                                            <option ng-repeat="z in tp" value="{{z.typ}}">{{z.typ}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Title:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="title" placeholder="Enter Title" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-default">Cancel</button>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- Viewing-->
+                    <div id="viewEntries" class="tab-pane fade">
+                        <form class="form" role="form"> <!-- search field(incomplete) size="78"-->
+
+                            <div class="form-group ">
+                                <input type="text" class="form-control"  type="text"  placeholder="Search... " ng-model="pubSearch">
+                            </div>
+
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-hover" ng-controller = "pubController">
+                                <thead>
+                                <tr>
+                                    <th>Sno</th>
+                                    <th>Lastname</th>
+                                    <th>Firstname</th>
+                                    <th>Type of Work</th>
+                                    <th>Title</th>
+                                </tr>
+                                </thead>
+                                <tbody >
+                                <tr ng-repeat="entry in entries | filter: pubSearch">
+                                    <td>{{entry.Sno}}</td>
+                                    <td>{{entry.lastName}}</td>
+                                    <td>{{entry.firstName}}</td>
+                                    <td>{{entry.typeofWork}}</td>
+                                    <td>{{entry.Title}}</td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Modifying-->
+                    <div id="modifyEntries" class="tab-pane fade">
+                        <div class="table-responsive" ng-controller = "pubmodController">
+                            <div class="form-group ">
+                                <input type="text" class="form-control"  type="text"  placeholder="Search... " ng-model="pubSearch">
+                            </div>
+                            <table class="table table-hover" >
+                                <thead>
+                                <tr>
+                                    <th>Sno</th>
+                                    <th>Lastname </th>
+                                    <th>Firstname</th>
+                                    <th>Type of Work</th>
+                                    <th>Title</th>
+                                </tr>
+                                </thead>
+                                <tbody >
+                                <!--<tr ng-repeat="entry in entries | filter: pubSearch" ng-click = "rowClick(entry);">-->
+                                <tr ng-repeat="entry in entries | filter: pubSearch" data-toggle="modal" data-target="#myModal" ng-click = "open('lg');">
+                                    <td>{{entry.Sno}}</td>
+                                    <td>{{entry.firstName}}</td>
+                                    <td>{{entry.lastName}}</td>
+                                    <td>{{entry.typeofWork}}</td>
+                                    <td>{{entry.Title}}</td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="row"><!--footer-->
+            <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <h4 class="navbar-brand">All rights reserved @ Institut für kern physik</h4>
+                    </div>
+                </div>
+            </nav>
+
+
+        </div>
+    </div>
+
+</body>
+</html>
