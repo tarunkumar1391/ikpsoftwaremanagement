@@ -2,12 +2,29 @@
  * Created by Haus-IT on 7/6/2016.
  */
 var app = angular.module('myApp',['ui.bootstrap','ngAnimate']);
-app.controller('pubController',function ($scope,$http) {
+// view purchase history
+app.controller('regsoftController',function ($scope,$http) {
 
     $http.get('../server/fetch.php').then(function (response) {
         $scope.entries = response.data.records;
-        console.log($scope.entries);
+
     })
+});
+app.controller('allocController',function ($scope,$http) {
+
+    $http.get('../server/fetch.php').then(function (response) {
+        $scope.softlist = response.data.records;
+
+    })
+
+});
+app.controller('allotedController',function ($scope,$http) {
+
+    $http.get('../server/fetchalloted.php').then(function (response) {
+        $scope.entries = response.data.records;
+
+    })
+
 });
 app.controller('pubmodController',function ($scope,$http,$uibModal, $log) {
     $http.get('../server/fetch.php').then(function (response) {

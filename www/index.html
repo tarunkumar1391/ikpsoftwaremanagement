@@ -20,6 +20,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="../scripts/js/bootstrap.min.js"></script>
+
 </head>
 <body ng-app="myApp" >
     <div class="container-fluid"><!--main body container-->
@@ -111,7 +112,7 @@
 
                     </div>
                     <!--view Dashboard-->
-                    <div id="viewEntries" class="tab-pane fade in active">
+                    <div id="viewEntries" class="tab-pane fade in active" ng-controller="allotedController">
                         <form class="form" role="form"> <!-- search field(incomplete) size="78"-->
 
                             <div class="form-group ">
@@ -124,19 +125,23 @@
                                 <thead>
                                 <tr>
                                     <th>Sno</th>
-                                    <th>Lastname</th>
-                                    <th>Firstname</th>
-                                    <th>Type of Work</th>
-                                    <th>Title</th>
+                                    <th>Software</th>
+                                    <th>No. of keys alloted</th>
+                                    <th>Alloted to</th>
+                                    <th>Date of allocation</th>
+                                    <th>Date of Expiry</th>
+                                    <th>Comments</th>
                                 </tr>
                                 </thead>
                                 <tbody >
                                 <tr ng-repeat="entry in entries | filter: pubSearch">
                                     <td>{{entry.Sno}}</td>
-                                    <td>{{entry.lastName}}</td>
-                                    <td>{{entry.firstName}}</td>
-                                    <td>{{entry.typeofWork}}</td>
-                                    <td>{{entry.Title}}</td>
+                                    <td>{{entry.selectedSoft}}</td>
+                                    <td>{{entry.nokl}}</td>
+                                    <td>{{entry.nameofRequester}}</td>
+                                    <td>{{entry.dateofAlloc}}</td>
+                                    <td>{{entry.licenseExpiry}}</td>
+                                    <td>{{entry.Comments}}</td>
 
                                 </tr>
                                 </tbody>
@@ -146,14 +151,18 @@
                     <!--Allocating license-->
                     <div id="allocateLicense" class="tab-pane fade">
                         <div class="container">
-                            <form role="form" class="form-horizontal" action="../server/main.php" method="post" ng-controller="pubController">
+                            <form role="form" class="form-horizontal" action="../server/softallocation.php" method="post" ng-controller="allocController">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" >Select a software:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <select class="form-control" name="sas" required>
-                                            <option>Choose an option...</option>
-                                            <option ng-repeat="software in entries" ng-value="{{software.Sname}}">{{software.Sname}}- ({{software.Tol}}) - {{software.Nok}}</option>
-                                        </select>
+                                        <!--<select class="form-control" name="sas" required ng-model="software">-->
+                                            <!--<option>Choose an option...</option>-->
+                                            <!--<option ng-repeat="software in softlist" value="{{software.Sname}}">{{software.Sname}}- ({{software.Tol}}) - {{software.Nok}}</option>-->
+                                        <!--</select>-->
+                                        <select class="form-control" name="sas" required ng-model="p" ng-options="c.Sname for c in softlist track by c.Sno"></select>
+                                        <input type="hidden" name="sas" ng-model="p.Sname" value="{{p.Sname}}">
+                                        <input type="hidden" name="softid" ng-model="p.Sno" value="{{p.Sno}}">
+                                        <input type="hidden" name="origkeys" ng-model="p.Nok" value="{{p.Nok}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -165,7 +174,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Software requester:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <input type="text" class="form-control" name="salloc" placeholder="Enter the name of the requester" required>
+                                        <input type="text" class="form-control" name="softreq" placeholder="Enter the name of the requester" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -209,14 +218,14 @@
 
                         </form>
                         <div class="table-responsive">
-                            <table class="table table-hover" ng-controller = "pubController">
+                            <table class="table table-hover" ng-controller = "regsoftController">
                                 <thead>
                                 <tr>
                                     <th>Sno</th>
                                     <th>Software</th>
                                     <th>Date of Purchase</th>
                                     <th>Type of License</th>
-                                    <th>No. of keys/licenses</th>
+                                    <th>No. of keys/licenses left</th>
                                     <th>Description</th>
                                 </tr>
                                 </thead>
