@@ -10,20 +10,20 @@ header("Content-Type: application/json; charset=UTF-8");
 
 $conn = new mysqli("localhost", "root", "", "ikp");
 
-$result = $conn->query("SELECT * FROM publications");
+$result = $conn->query("SELECT * FROM software");
 
 $outp = "";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
-    $outp .= '{"Sno":"'  . $rs["sno"] . '",';
-    $outp .= '"lastName":"'  . $rs["lname"] . '",';
-    $outp .= '"firstName":"'  . $rs["fname"] . '",';
-    $outp .= '"Betreuer":"'   . $rs["betreuer"] . '",';
-    $outp .= '"endDate":"'. $rs["enddate"] . '",';
-    $outp .= '"typeofWork":"'. $rs["typofwork"] . '",';
-    $outp .= '"Foerderung":"'. $rs["foerderung"] . '",';
-    $outp .= '"Tp":"'. $rs["tp"] . '",';
-    $outp .= '"Title":"'. $rs["title"] . '"}';
+    $outp .= '{"Sno":"'  . $rs["Sno"] . '",';
+    $outp .= '"Sname":"'  . $rs["Sname"] . '",';
+    $outp .= '"Dop":"'  . $rs["Dop"] . '",';
+    $outp .= '"Tol":"'   . $rs["Tol"] . '",';
+    $outp .= '"Price":"'. $rs["Price"] . '",';
+    $outp .= '"Vname":"'. $rs["Vname"] . '",';
+    $outp .= '"Nok":"'. $rs["Nok"] . '",';
+    $outp .= '"Ordernum":"'. $rs["Ordernum"] . '",';
+    $outp .= '"Description":"'. $rs["Description"] . '"}';
 }
 $outp ='{"records":['.$outp.']}';
 $conn->close();

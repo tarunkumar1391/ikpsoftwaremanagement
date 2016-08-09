@@ -25,83 +25,76 @@
     <div class="container-fluid"><!--main body container-->
         <div class="row-fluid"><!--header-->
             <div class="page-header">
-                    <h3>IKP - Publication Management System</h3>
+                    <h3>IKP Management System</h3>
             </div>
         </div>
         <div class="row"><!--Nav + body content-->
             <div class="col-md-2 col-lg-2 navbg">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a data-toggle="tab" href="#newEntry">New Entry</a></li>
-                    <li><a data-toggle="tab" href="#viewEntries">View</a></li>
-                    <li><a data-toggle="tab" href="#modifyEntries">Modify</a></li>
+                    <li class="active"><a data-toggle="tab" href="#viewEntries">Dasboard</a></li>
+                    <li><a data-toggle="tab" href="#newEntry">Register a software</a></li>
+                    <li><a data-toggle="tab" href="#allocateLicense">Allocate license</a></li>
+                    <li><a data-toggle="tab" href="#purchasehistory">Purchase history</a></li>
 
                 </ul>
             </div>
             <div class="col-mg-10 col-lg-10">
                 <div class="tab-content">
-                    <div id="newEntry" class="tab-pane fade in active">
+                    <div id="newEntry" class="tab-pane fade">
                         <div class="container">
-                            <form role="form" class="form-horizontal" action="../server/main.php" method="post" ng-controller="pubController">
+                            <form role="form" class="form-horizontal" action="../server/main.php" method="post">
                                 <div class="form-group">
-                                    <div class="col-sm-10 col-sm-offset-2">
-                                        <?php echo $result; ?>
+                                    <label class="control-label col-sm-2" >Name of the software:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="sname" placeholder="Enter name of the software" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" >Name:</label>
+                                    <label class="control-label col-sm-2" >Date of purchase:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+                                        <input type="date" class="form-control" name="dop" placeholder="Choose the date of purchase" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" >First name:</label>
+                                    <label class="control-label col-sm-2">Type of license:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <input type="text" class="form-control" name="fname" placeholder="Enter First name" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2">Betreuer:</label>
-                                    <div class="col-lg-8 col-md-8">
-                                        <input type="text" class="form-control" name="betreuer" placeholder="Enter betreuer's name" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" >End date:</label>
-                                    <div class="col-lg-8 col-md-8">
-                                        <input type="date" class="form-control" name="enddate" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" >Type of work:</label>
-                                    <div class="col-lg-8 col-md-8">
-                                        <select class="form-control" name="typofwork" required>
+                                        <select class="form-control" name="tol" placeholder="Choose the type of license" required>
                                             <option>Choose an option...</option>
-                                            <option ng-repeat="x in tow" value="{{x.work}}">{{x.work}}</option>
+                                            <option value="Multi user">Multi-User</option>
+                                            <option value="Single user">Single-User</option>
+                                            <option value="Volume">Volume</option>
+                                            <option value="Free">Free</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" >Förderung:</label>
+                                    <label class="control-label col-sm-2" >Price:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <select  class="form-control" name="foerderung" required>
-                                            <option>Choose an option...</option>
-                                            <option ng-repeat="y in foerd" value="{{y.foer}}">{{y.foer}}</option>
-                                        </select>
+                                        <input type="text" class="form-control" name="price" placeholder="Enter price of the product" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" >TP:</label>
+                                    <label class="control-label col-sm-2" >Vendor name:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <select  class="form-control" name="tp" required>
-                                            <option>Choose an option...</option>
-                                            <option ng-repeat="z in tp" value="{{z.typ}}">{{z.typ}}</option>
-                                        </select>
+                                        <input type="text" class="form-control" name="vname" placeholder="Enter name of the vendor" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" >Title:</label>
+                                    <label class="control-label col-sm-2" >No. of keys/licenses:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <input type="text" class="form-control" name="title" placeholder="Enter Title" required>
+                                        <input type="number" class="form-control" name="nok" placeholder="Enter only no. of licenses/keys" min="1" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Order No:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="ordernum" placeholder="Enter the order number" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Description:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <textarea class="form-control" name="desc" placeholder="Additional comments"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -117,8 +110,8 @@
                         </div>
 
                     </div>
-                    <!-- Viewing-->
-                    <div id="viewEntries" class="tab-pane fade">
+                    <!--view Dashboard-->
+                    <div id="viewEntries" class="tab-pane fade in active">
                         <form class="form" role="form"> <!-- search field(incomplete) size="78"-->
 
                             <div class="form-group ">
@@ -127,7 +120,7 @@
 
                         </form>
                         <div class="table-responsive">
-                            <table class="table table-hover" ng-controller = "pubController">
+                            <table class="table table-hover" >
                                 <thead>
                                 <tr>
                                     <th>Sno</th>
@@ -150,37 +143,96 @@
                             </table>
                         </div>
                     </div>
-                    <!-- Modifying-->
-                    <div id="modifyEntries" class="tab-pane fade">
-                        <div class="table-responsive" ng-controller = "pubmodController">
+                    <!--Allocating license-->
+                    <div id="allocateLicense" class="tab-pane fade">
+                        <div class="container">
+                            <form role="form" class="form-horizontal" action="../server/main.php" method="post" ng-controller="pubController">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Select a software:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" name="sas" required>
+                                            <option>Choose an option...</option>
+                                            <option ng-repeat="software in entries" ng-value="{{software.Sname}}">{{software.Sname}}- ({{software.Tol}}) - {{software.Nok}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >No. of keys/license:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="number" class="form-control" name="nokl" placeholder="Enter only the no. of licenses/keys required" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Software requester:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="salloc" placeholder="Enter the name of the requester" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Date of allocation:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="date" class="form-control" name="dalloc" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >License expires on:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="date" class="form-control" name="lexpiry" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" >Comments:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <textarea class="form-control" name="comm" placeholder="Additional comments"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-default">Cancel</button>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <!--purchase history-->
+                    <div id="purchasehistory" class="tab-pane fade">
+                        <form class="form" role="form"> <!-- search field(incomplete) size="78"-->
+
                             <div class="form-group ">
-                                <input type="text" class="form-control"  type="text"  placeholder="Search... " ng-model="pubSearch">
+                                <input type="text" class="form-control"  type="text"  placeholder="Search... " ng-model="softSearch">
                             </div>
-                            <table class="table table-hover" >
+
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-hover" ng-controller = "pubController">
                                 <thead>
                                 <tr>
                                     <th>Sno</th>
-                                    <th>Lastname </th>
-                                    <th>Firstname</th>
-                                    <th>Type of Work</th>
-                                    <th>Title</th>
+                                    <th>Software</th>
+                                    <th>Date of Purchase</th>
+                                    <th>Type of License</th>
+                                    <th>No. of keys/licenses</th>
+                                    <th>Description</th>
                                 </tr>
                                 </thead>
                                 <tbody >
-                                <!--<tr ng-repeat="entry in entries | filter: pubSearch" ng-click = "rowClick(entry);">-->
-                                <tr ng-repeat="entry in entries | filter: pubSearch" data-toggle="modal" data-target="#myModal" ng-click = "open('lg');">
+                                <tr ng-repeat="entry in entries | filter: softSearch">
                                     <td>{{entry.Sno}}</td>
-                                    <td>{{entry.firstName}}</td>
-                                    <td>{{entry.lastName}}</td>
-                                    <td>{{entry.typeofWork}}</td>
-                                    <td>{{entry.Title}}</td>
+                                    <td>{{entry.Sname}}</td>
+                                    <td>{{entry.Dop}}</td>
+                                    <td>{{entry.Tol}}</td>
+                                    <td>{{entry.Nok}}</td>
+                                    <td>{{entry.Description}}</td>
 
                                 </tr>
                                 </tbody>
                             </table>
-
                         </div>
-
                     </div>
 
                 </div>

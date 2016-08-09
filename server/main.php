@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "ikp";
 //define variables
-$lname = $fname = $betreuer = $enddate = $typofwork = $foerderung = $tp = $title = "";
+$Sname = $Dop = $Tol = $Price = $Vname = $Nok = $Order = $Description = "";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 }
 
 // prepare and bind
-$stmt = $conn->prepare("INSERT INTO publications (lname, fname, betreuer, enddate, typofwork, foerderung, tp, title) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssssss", $lname, $fname, $betreuer, $enddate, $typofwork, $foerderung, $tp, $title);
+$stmt = $conn->prepare("INSERT INTO software (Sname, Dop, Tol, Price, Vname, Nok, Ordernum, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssisiss", $Sname, $Dop, $Tol, $Price, $Vname, $Nok, $Order, $Description);
 
 function test_input($data) {
     $data = trim($data);
@@ -26,14 +26,14 @@ function test_input($data) {
 
 // set parameters and execute
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $lname = isset($_POST['lname']) ? $_POST['lname'] : "0";
-    $fname = isset($_POST['fname']) ? $_POST['fname'] : "0";
-    $betreuer = isset($_POST['betreuer']) ? $_POST['betreuer'] : "0";
-    $enddate = isset($_POST['enddate']) ? $_POST['enddate'] : "0";
-    $typofwork = isset($_POST['typofwork']) ? $_POST['typofwork'] : "0";
-    $foerderung = isset($_POST['foerderung']) ? $_POST['foerderung'] : "0";
-    $tp = isset($_POST['tp']) ? $_POST['tp'] : "0";
-    $title = isset($_POST['title']) ? $_POST['title'] : "0";
+    $Sname = isset($_POST['sname']) ? $_POST['sname'] : "0";
+    $Dop = isset($_POST['dop']) ? $_POST['dop'] : "0";
+    $Tol = isset($_POST['tol']) ? $_POST['tol'] : "0";
+    $Price = isset($_POST['price']) ? $_POST['price'] : "0";
+    $Vname = isset($_POST['vname']) ? $_POST['vname'] : "0";
+    $Nok = isset($_POST['nok']) ? $_POST['nok'] : "0";
+    $Order = isset($_POST['Ordernum']) ? $_POST['Ordernum'] : "0";
+    $Description = isset($_POST['desc']) ? $_POST['desc'] : "0";
 
 
 
