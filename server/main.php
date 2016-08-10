@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 $stmt = $conn->prepare("INSERT INTO software (Sname, Dop, Tol, Price, Vname, Nok, Ordernum, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 $stmt->bind_param("sssisiss", $Sname, $Dop, $Tol, $Price, $Vname, $Nok, $Order, $Description);
 
-function test_input($data) {
+function input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -26,14 +26,14 @@ function test_input($data) {
 
 // set parameters and execute
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $Sname = isset($_POST['sname']) ? $_POST['sname'] : "0";
-    $Dop = isset($_POST['dop']) ? $_POST['dop'] : "0";
-    $Tol = isset($_POST['tol']) ? $_POST['tol'] : "0";
-    $Price = isset($_POST['price']) ? $_POST['price'] : "0";
-    $Vname = isset($_POST['vname']) ? $_POST['vname'] : "0";
-    $Nok = isset($_POST['nok']) ? $_POST['nok'] : "0";
-    $Order = isset($_POST['Ordernum']) ? $_POST['Ordernum'] : "0";
-    $Description = isset($_POST['desc']) ? $_POST['desc'] : "0";
+    $Sname = isset($_POST['sname']) ? input($_POST['sname']) : "0";
+    $Dop = isset($_POST['dop']) ? input($_POST['dop']) : "0";
+    $Tol = isset($_POST['tol']) ? input($_POST['tol']) : "0";
+    $Price = isset($_POST['price']) ? input($_POST['price']) : "0";
+    $Vname = isset($_POST['vname']) ? input($_POST['vname']) : "0";
+    $Nok = isset($_POST['nok']) ? input($_POST['nok']) : "0";
+    $Order = isset($_POST['ordernum']) ? input($_POST['ordernum']) : "0";
+    $Description = isset($_POST['desc']) ? input($_POST['desc']) : "0";
 
 
 

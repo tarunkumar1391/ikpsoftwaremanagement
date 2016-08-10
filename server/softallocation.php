@@ -27,7 +27,7 @@ $stmt->bind_param("sissss", $sas, $nokl, $softreq, $dalloc, $lexpiry, $comm);
 $stmt2 = $conn->prepare("UPDATE software SET Nok=? WHERE Sno=?");
 $stmt2->bind_param("ii", $finNok,$sno2);
 
-function test_input($data) {
+function input($data) {
 $data = trim($data);
 $data = stripslashes($data);
 $data = htmlspecialchars($data);
@@ -36,14 +36,14 @@ return $data;
 
 // set parameters and execute
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $sas = isset($_POST['sas']) ? $_POST['sas'] : "0";
-    $sno2 = isset($_POST['softid']) ? $_POST['softid'] : "0";
-    $origNok = isset($_POST['origkeys']) ? $_POST['origkeys'] : "0";
-    $nokl = isset($_POST['nokl']) ? $_POST['nokl'] : "0";
-    $softreq = isset($_POST['softreq']) ? $_POST['softreq'] : "0";
-    $dalloc = isset($_POST['dalloc']) ? $_POST['dalloc'] : "0";
-    $lexpiry = isset($_POST['lexpiry']) ? $_POST['lexpiry'] : "0";
-    $comm = isset($_POST['comm']) ? $_POST['comm'] : "0";
+    $sas = isset($_POST['sas']) ? input($_POST['sas']) : "0";
+    $sno2 = isset($_POST['softid']) ? input($_POST['softid']) : "0";
+    $origNok = isset($_POST['origkeys']) ? input($_POST['origkeys']) : "0";
+    $nokl = isset($_POST['nokl']) ? input($_POST['nokl']) : "0";
+    $softreq = isset($_POST['softreq']) ? input($_POST['softreq']) : "0";
+    $dalloc = isset($_POST['dalloc']) ? input($_POST['dalloc']) : "0";
+    $lexpiry = isset($_POST['lexpiry']) ? input($_POST['lexpiry']) : "0";
+    $comm = isset($_POST['comm']) ? input($_POST['comm']) : "0";
 
     if($nokl <= $origNok && $nokl > 0){
         $finNok = $origNok - $nokl;

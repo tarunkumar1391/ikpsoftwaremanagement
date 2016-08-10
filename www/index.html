@@ -26,7 +26,7 @@
     <div class="container-fluid"><!--main body container-->
         <div class="row-fluid"><!--header-->
             <div class="page-header">
-                    <h3>IKP Management System</h3>
+                    <h3>IKP Software License Management System</h3>
             </div>
         </div>
         <div class="row"><!--Nav + body content-->
@@ -116,7 +116,7 @@
                         <form class="form" role="form"> <!-- search field(incomplete) size="78"-->
 
                             <div class="form-group ">
-                                <input type="text" class="form-control"  type="text"  placeholder="Search... " ng-model="pubSearch">
+                                <input type="text" class="form-control"  type="text"  placeholder="Search... " ng-model="allotSearch">
                             </div>
 
                         </form>
@@ -134,7 +134,7 @@
                                 </tr>
                                 </thead>
                                 <tbody >
-                                <tr ng-repeat="entry in entries | filter: pubSearch">
+                                <tr ng-repeat="entry in entries | filter: allotSearch">
                                     <td>{{entry.Sno}}</td>
                                     <td>{{entry.selectedSoft}}</td>
                                     <td>{{entry.nokl}}</td>
@@ -155,10 +155,6 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" >Select a software:</label>
                                     <div class="col-lg-8 col-md-8">
-                                        <!--<select class="form-control" name="sas" required ng-model="software">-->
-                                            <!--<option>Choose an option...</option>-->
-                                            <!--<option ng-repeat="software in softlist" value="{{software.Sname}}">{{software.Sname}}- ({{software.Tol}}) - {{software.Nok}}</option>-->
-                                        <!--</select>-->
                                         <select class="form-control" name="sas" required ng-model="p" ng-options="c.Sname for c in softlist track by c.Sno"></select>
                                         <input type="hidden" name="sas" ng-model="p.Sname" value="{{p.Sname}}">
                                         <input type="hidden" name="softid" ng-model="p.Sno" value="{{p.Sno}}">

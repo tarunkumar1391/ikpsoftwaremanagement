@@ -26,6 +26,8 @@ app.controller('allotedController',function ($scope,$http) {
     })
 
 });
+
+//optional
 app.controller('pubmodController',function ($scope,$http,$uibModal, $log) {
     $http.get('../server/fetch.php').then(function (response) {
 
