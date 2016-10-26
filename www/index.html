@@ -134,7 +134,7 @@
                                 </tr>
                                 </thead>
                                 <tbody >
-                                <tr ng-repeat="entry in entries | filter: allotSearch">
+                                <tr ng-repeat="entry in entries | filter: allotSearch | orderBy:'-'">
                                     <td>{{entry.Sno}}</td>
                                     <td>{{entry.selectedSoft}}</td>
                                     <td>{{entry.nokl}}</td>
@@ -226,7 +226,7 @@
                                 </tr>
                                 </thead>
                                 <tbody >
-                                <tr ng-repeat="entry in entries | filter: softSearch">
+                                <tr ng-repeat="entry in entries | filter: softSearch | orderBy:'-'">
                                     <td>{{entry.Sno}}</td>
                                     <td>{{entry.Sname}}</td>
                                     <td>{{entry.Dop}}</td>
