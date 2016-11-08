@@ -93,6 +93,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-sm-2" >Kostenstelle:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="kostenstelle" placeholder="Kostenstelle number" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-sm-2" >Description:</label>
                                     <div class="col-lg-8 col-md-8">
                                         <textarea class="form-control" name="desc" placeholder="Additional comments"></textarea>
@@ -128,6 +134,9 @@
                                     <th>Software</th>
                                     <th>No. of keys alloted</th>
                                     <th>Alloted to</th>
+                                    <th>MAC</th>
+                                    <th>Room No</th>
+                                    <th>Group</th>
                                     <th>Date of allocation</th>
                                     <th>Date of Expiry</th>
                                     <th>Comments</th>
@@ -139,6 +148,9 @@
                                     <td>{{entry.selectedSoft}}</td>
                                     <td>{{entry.nokl}}</td>
                                     <td>{{entry.nameofRequester}}</td>
+                                    <td>{{entry.mac_device}}</td>
+                                    <td>{{entry.requester_roomNo}}</td>
+                                    <td>{{entry.requester_groupName}}</td>
                                     <td>{{entry.dateofAlloc}}</td>
                                     <td>{{entry.licenseExpiry}}</td>
                                     <td>{{entry.Comments}}</td>
@@ -171,6 +183,24 @@
                                     <label class="control-label col-sm-2">Software requester:</label>
                                     <div class="col-lg-8 col-md-8">
                                         <input type="text" class="form-control" name="softreq" placeholder="Enter the name of the requester" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">MAC of PC/Laptop:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="mac_device" placeholder="Enter the MAC of the device" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Room no:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="requester_roomNo" placeholder="Enter the room no" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Group name:</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="requester_groupName" placeholder="Enter the group name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -222,6 +252,7 @@
                                     <th>Date of Purchase</th>
                                     <th>Type of License</th>
                                     <th>No. of keys/licenses left</th>
+                                    <th>Kostenstelle</th>
                                     <th>Description</th>
                                 </tr>
                                 </thead>
@@ -232,6 +263,7 @@
                                     <td>{{entry.Dop}}</td>
                                     <td>{{entry.Tol}}</td>
                                     <td>{{entry.Nok}}</td>
+                                    <td>{{entry.kostenstelle}}</td>
                                     <td>{{entry.Description}}</td>
 
                                 </tr>

@@ -23,6 +23,7 @@ while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"Vname":"'. $rs["Vname"] . '",';
     $outp .= '"Nok":"'. $rs["Nok"] . '",';
     $outp .= '"Ordernum":"'. $rs["Ordernum"] . '",';
+    $outp .= '"kostenstelle":"'. $rs["kostenstelle"] . '",';
     $outp .= '"Description":"'. $rs["Description"] . '"}';
 }
 $outp ='{"records":['.$outp.']}';

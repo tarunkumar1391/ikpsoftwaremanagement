@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "ikp";
 //define variables
-$Sname = $Dop = $Tol = $Price = $Vname = $Nok = $Order = $Description = "";
+$Sname = $Dop = $Tol = $Price = $Vname = $Nok = $Order = $kostenstelle = $Description = "";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 }
 
 // prepare and bind
-$stmt = $conn->prepare("INSERT INTO software (Sname, Dop, Tol, Price, Vname, Nok, Ordernum, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssisiss", $Sname, $Dop, $Tol, $Price, $Vname, $Nok, $Order, $Description);
+$stmt = $conn->prepare("INSERT INTO software (Sname, Dop, Tol, Price, Vname, Nok, Ordernum, kostenstelle, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssisisss", $Sname, $Dop, $Tol, $Price, $Vname, $Nok, $Order,$kostenstelle, $Description);
 
 function input($data) {
     $data = trim($data);
@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $Vname = isset($_POST['vname']) ? input($_POST['vname']) : "0";
     $Nok = isset($_POST['nok']) ? input($_POST['nok']) : "0";
     $Order = isset($_POST['ordernum']) ? input($_POST['ordernum']) : "0";
+    $kostenstelle = isset($_POST['kostenstelle']) ? input($_POST['kostenstelle']) : "0";
     $Description = isset($_POST['desc']) ? input($_POST['desc']) : "0";
 
 

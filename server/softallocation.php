@@ -11,7 +11,7 @@ $username = "root";
 $password = "";
 $dbname = "ikp";
 //define variables
-$sno2 = $finNok = $origNok = $sas = $nokl = $softreq = $dalloc = $lexpiry = $comm = "";
+$sno2 = $finNok = $origNok = $sas = $nokl = $softreq = $mac_device = $requester_roomNo = $requester_groupName = $dalloc = $lexpiry = $comm = "";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -21,8 +21,8 @@ die("Connection failed: " . $conn->connect_error);
 }
 
 // prepare and bind
-$stmt = $conn->prepare("INSERT INTO allocatedsoftware (	selectedSoft, nokl, nameofRequester, dateofAlloc, licenseExpiry, comments) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sissss", $sas, $nokl, $softreq, $dalloc, $lexpiry, $comm);
+$stmt = $conn->prepare("INSERT INTO allocatedsoftware (	selectedSoft, nokl, nameofRequester, mac_device, requester_roomNo, requester_groupName, dateofAlloc, licenseExpiry, comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sisssssss", $sas, $nokl, $softreq, $mac_device, $requester_roomNo, $requester_groupName, $dalloc, $lexpiry, $comm);
 
 $stmt2 = $conn->prepare("UPDATE software SET Nok=? WHERE Sno=?");
 $stmt2->bind_param("ii", $finNok,$sno2);
@@ -41,6 +41,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $origNok = isset($_POST['origkeys']) ? input($_POST['origkeys']) : "0";
     $nokl = isset($_POST['nokl']) ? input($_POST['nokl']) : "0";
     $softreq = isset($_POST['softreq']) ? input($_POST['softreq']) : "0";
+    $mac_device = isset($_POST['mac_device']) ? input($_POST['mac_device']) : "0";
+    $requester_roomNo = isset($_POST['requester_roomNo']) ? input($_POST['requester_roomNo']) : "0";
+    $requester_groupName = isset($_POST['requester_groupName']) ? input($_POST['requester_groupName']) : "0";
     $dalloc = isset($_POST['dalloc']) ? input($_POST['dalloc']) : "0";
     $lexpiry = isset($_POST['lexpiry']) ? input($_POST['lexpiry']) : "0";
     $comm = isset($_POST['comm']) ? input($_POST['comm']) : "0";
